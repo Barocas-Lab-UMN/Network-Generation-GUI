@@ -81,9 +81,9 @@ length_vect = zeros(1,num_nets);
 for j = 1:num_nets % Create j networks
     N = j;
     % Update progress bar 
-    prog_box.Value = j/num_nets; 
-    message = sprintf('Creating network %i of %i. . .', N, num_nets);
-    prog_box.Message = message;
+    %prog_box.Value = j/num_nets; 
+    %message = sprintf('Creating network %i of %i. . .', N, num_nets);
+    %prog_box.Message = message;
 
     % Create network based on initial # of seed points     
     if strcmp(net_type, 'Delaunay') 
@@ -105,7 +105,7 @@ for j = 1:num_nets % Create j networks
         if (target_vol_fract - total_vf) > 0 % Need to add fibers.
             clear fibers_old nodes_old
             message = sprintf('Creating network %i of %i. . . Adding fibers', N, num_nets);
-            prog_box.Message = message;
+            %prog_box.Message = message;
             points_seed = points_seed + 5; % Add 5 seed points to create more fibers
             
             if strcmp(net_type, 'Delaunay') 
@@ -144,7 +144,7 @@ for j = 1:num_nets % Create j networks
     
     % Save image of network
     if save_image == 1      
-        filename_jpg = sprintf('%s%d.jpg', net_name, j); %save jpg image
+        filename_jpg = sprintf('%s_%i.jpg', net_name, j); %save jpg image
     	saveas(gca,fullfile(fpath,filename_jpg));
 
     %     filename_fig=sprintf('%s%d.jpg', net_name, j); %save fig image
@@ -187,6 +187,6 @@ if write_convert == 1
 end
 
 
-close(prog_box);
+%close(prog_box);
 
 end
