@@ -45,7 +45,6 @@ elseif strcmp(align_dir, 'Z')
         lambday = 1;
         lambdaz = 0.3716*exp(3*net_align);
 end
-lambdax = 2;   
 
 if strcmp(net_type, 'Delaunay')  
     % Calculate number of seed points needed for given volume fraction
@@ -155,7 +154,7 @@ for j = 1:num_nets % Create j networks
 
     % Double check network orientations to see that rotation is working
     %fiber_orient_dist(nodes, fibers); % Creates orientation tensor
-    [R] = calc_orient(nodes, fibers);
+    [R] = calc_orient(nodes, fibers)
 
     % Write network to file
     fprintf('Writing info to new file... \n')
