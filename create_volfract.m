@@ -61,13 +61,13 @@ if strcmp(net_type, 'Delaunay')
 elseif strcmp(net_type, 'Voronoi')
     % Calculate number of seed points needed for given volume fraction
     if strcmp(align_dir, 'X')
-            points_seed = ((3025*log(lambdax)) + 3303) * vf_incr * x_incr * rad_incr;
+            points_seed = ((6051*log(lambdax)) + 6606) * vf_incr * x_incr * rad_incr;
 
     elseif strcmp(align_dir, 'Y')
-            points_seed = ((3025*log(lambday)) + 3303) * vf_incr * x_incr * rad_incr;
+            points_seed = ((6051*log(lambday)) + 6606) * vf_incr * x_incr * rad_incr;
 
     elseif strcmp(align_dir, 'Z')
-            points_seed = ((3025*log(lambdaz)) + 3303) * vf_incr * x_incr * rad_incr;
+            points_seed = ((6051*log(lambdaz)) + 6606) * vf_incr * x_incr * rad_incr;
     end
     
 end

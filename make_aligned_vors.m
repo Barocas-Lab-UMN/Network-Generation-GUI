@@ -1,5 +1,5 @@
 function [nodes_old, nodes, fibers_old, fibers] = make_aligned_vors()
-% make many aligned dels
+% make many aligned vors
 
 %CHECK
 %that saving networks to the right directory if you want to save them to a directory
@@ -43,18 +43,5 @@ clipbox = [xmin, xmax, ymin, ymax, zmin, zmax]; % xmin xmax ymin ymax zmin zmax
 % get giant network
 [nodes, fibers] = get_giant(nodes, fibers);
 
-fname = sprintf('net_%i.del', n);
-%fname = sprintf('network_library/net_%i.del', n); %use if saving many nets to network_library directory
 
-fprintf('creating %s\n\n', fname);
-%put_net(nodes, fibers, fname, ones(length(fibers),1));% This writes out the network file
-
-% calculate network fiber orientation
-
-%[R] = calc_orient(nodes, fibers);
-
-%disp( size(fibers,1) ) %number of fibers in network
-
-
-%rmpath('netmat/');
 end
