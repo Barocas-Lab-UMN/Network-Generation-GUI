@@ -49,25 +49,25 @@ end
 if strcmp(net_type, 'Delaunay')  
     % Calculate number of seed points needed for given volume fraction
     if strcmp(align_dir, 'X')
-            points_seed = ((2691*log(lambdax)) + 3063) * vf_incr * x_incr * rad_incr;
+            points_seed = ((2691*log(lambdax)) + 3063) * vf_incr * (x_incr^3) * rad_incr;
             
     elseif strcmp(align_dir, 'Y')
-            points_seed = ((2691*log(lambday)) + 3063) * vf_incr * x_incr * rad_incr;
+            points_seed = ((2691*log(lambday)) + 3063) * vf_incr * (x_incr^3) * rad_incr;
 
     elseif strcmp(align_dir, 'Z')
-            points_seed = ((2691*log(lambdaz)) + 3063) * vf_incr * x_incr * rad_incr;
+            points_seed = ((2691*log(lambdaz)) + 3063) * vf_incr * (x_incr^3) * rad_incr;
     end
     
 elseif strcmp(net_type, 'Voronoi')
     % Calculate number of seed points needed for given volume fraction
     if strcmp(align_dir, 'X')
-            points_seed = ((6051*log(lambdax)) + 6606) * vf_incr * x_incr * rad_incr;
+            points_seed = ((6051*log(lambdax)) + 6606) * vf_incr * (x_incr^3) * rad_incr;
 
     elseif strcmp(align_dir, 'Y')
-            points_seed = ((6051*log(lambday)) + 6606) * vf_incr * x_incr * rad_incr;
+            points_seed = ((6051*log(lambday)) + 6606) * vf_incr * (x_incr^3) * rad_incr;
 
     elseif strcmp(align_dir, 'Z')
-            points_seed = ((6051*log(lambdaz)) + 6606) * vf_incr * x_incr * rad_incr;
+            points_seed = ((6051*log(lambdaz)) + 6606) * vf_incr * (x_incr^3) * rad_incr;
     end
     
 end
