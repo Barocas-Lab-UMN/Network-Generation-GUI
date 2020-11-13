@@ -22,6 +22,7 @@ boundaries = [-0.5 0.5 -0.5 0.5 -0.5 0.5]; % RVE boundaries in computational uni
 vf_tol = 1e-3; % Tolerance for final volume fraction. This ~ volume of one fiber
 x = rve_len * 1e-6; % Dimensionalize to be in m- currently um (Change later)
 fiber_radius = fiber_rad * 1e-9; % Dimensionalize to be in m- currently nm
+scale_factor = ((target_vol_fract*(x^3))/(fiber_radius^2))/((0.04*(20e-6^3))/(100e-9^2));
 rad_incr = fiber_radius/100e-9; % Equations for seed points based on r=100 nm. Will need to scale accordingly
 x_incr = x/20e-6; % Equations for seed points based on dim of 20e-6. Will need to scale accordingly
 vf_incr = target_vol_fract/0.04; %Equations for seed points based on vf of 0.04. Will need to scale accordingly
@@ -80,9 +81,9 @@ length_vect = zeros(1,num_nets);
 for j = 1:num_nets % Create j networks
     N = j;
     % Update progress bar 
-    %prog_box.Value = j/num_nets; 
-    %message = sprintf('Creating network %i of %i. . .', N, num_nets);
-    %prog_box.Message = message;
+    prog_box.Value = j/num_nets; 
+    message = sprintf('Creating network %i of %i. . .', N, num_nets);
+    prog_box.Message = message;
 
     % Create network based on initial # of seed points     
     if strcmp(net_type, 'Delaunay') 
@@ -160,7 +161,7 @@ for j = 1:num_nets % Create j networks
     fprintf('Writing info to new file... \n')
     if strcmp(netfile_type, 'Text File')  % Text file
         fnm = sprintf('%s%s%i%s', net_name, '_', j, '.txt');
-        put_net(nodes, fibers, fnm, fib_type);
+        put_net(nodes, fibers, fullfile(fpath, fnm), fib_type);
 
     elseif strcmp(netfile_type, '.mat File') % Mat file
         fnm = sprintf('%s%s%i%s', net_name, '_', j, '.mat');
