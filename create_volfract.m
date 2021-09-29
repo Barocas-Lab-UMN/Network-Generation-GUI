@@ -35,45 +35,27 @@ if strcmp(align_dir, 'X')
         lambdax = 0.3716*exp(3*net_align);
         lambday = 1;
         lambdaz = 1;
+        lambda_goal = lambdax;
 
 elseif strcmp(align_dir, 'Y')
         lambdax = 1;
         lambday = 0.3716*exp(3*net_align);
         lambdaz = 1;
+        lambda_goal = lambday;
 
 elseif strcmp(align_dir, 'Z')
         lambdax = 1;
         lambday = 1;
         lambdaz = 0.3716*exp(3*net_align);
+        lambda_goal = lambdaz;
 end
 
-if strcmp(net_type, 'Delaunay')  
-    % Calculate number of seed points needed for given volume fraction
-    if strcmp(align_dir, 'X')
-            points_seed = ((2691*log(lambdax)) + 3063) * vf_incr * (x_incr^3) * rad_incr;
-            
-    elseif strcmp(align_dir, 'Y')
-            points_seed = ((2691*log(lambday)) + 3063) * vf_incr * (x_incr^3) * rad_incr;
+fiber_len_goal_dim = (target_vol_fract*(x^3))/(pi*(fiber_radius^2)); % Real units
+fiber_len_goal = fiber_len_goal_dim/x; % Computational units
 
-    elseif strcmp(align_dir, 'Z')
-            points_seed = ((2691*log(lambdaz)) + 3063) * vf_incr * (x_incr^3) * rad_incr;
-    end
-    
-elseif strcmp(net_type, 'Voronoi')
-    % Calculate number of seed points needed for given volume fraction
-    if strcmp(align_dir, 'X')
-            points_seed = ((6051*log(lambdax)) + 6606) * vf_incr * (x_incr^3) * rad_incr;
+n_seed = guess_seed_function(lambda_goal, fiber_len_goal, net_type);
 
-    elseif strcmp(align_dir, 'Y')
-            points_seed = ((6051*log(lambday)) + 6606) * vf_incr * (x_incr^3) * rad_incr;
-
-    elseif strcmp(align_dir, 'Z')
-            points_seed = ((6051*log(lambdaz)) + 6606) * vf_incr * (x_incr^3) * rad_incr;
-    end
-    
-end
-
-points_seed = round(points_seed); % Adjust initial guess to make faster
+points_seed = round(n_seed); % Adjust initial guess to make faster
 
 % Make networks
 length_vect = zeros(1,num_nets);
